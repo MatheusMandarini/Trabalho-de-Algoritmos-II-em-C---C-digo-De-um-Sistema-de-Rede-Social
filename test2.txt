@@ -1,0 +1,13 @@
+1 21 Joao_Pedro 29 Sao_Paulo
+1 22 Matheus 20 Sao_Paulo
+1 24 rafa 30 Pedro
+2 21 Joao_Pedro_Atualizado 30 Sao_Paulo_Norte
+3 21
+4 21 Hoje estou testando a funcao de publicacao
+5 21 22
+6 21
+7 21
+8 21 22
+9
+10 21
+0
