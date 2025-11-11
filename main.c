@@ -126,4 +126,8 @@ int main(int argc, char *argv[])
     fclose(arq_recomendacoes);
 
     return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e0a228d1c93717d2084a409c34d71ca40a639c45
