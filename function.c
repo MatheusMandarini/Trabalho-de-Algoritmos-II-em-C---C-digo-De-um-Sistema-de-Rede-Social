@@ -21,78 +21,87 @@ void adicionar_usuario(Usuario **lista_usuarios, FILE *arq) {
     int fecha_procedimento;
     char cidade[50];
     Usuario *novo_usuario, *q, *p;
+    char ch;
     fecha_procedimento=0;
-    /*Leitura do arquivo para cada dado*/
-    if (fscanf(arq, "%d", &id) == 1) {
-        fscanf(arq, " %s", nome);
-        if(strlen(nome) > 49) {
-            printf("\nNome muito longo! Será truncado para 49 caracteres.\n");
-            nome[49] = '\0'; 
-        }
-        fscanf(arq, "%d", &idade);
-        fscanf(arq, " %s", cidade);
-        /*Mostra os dados lidos*/
-        printf("Nome: %s\nIdade: %d\nCidade: %s\nID: %d\n", nome, idade, cidade, id);
-        
-        /*verificação de idade negativa*/
-        if(idade <0){
-            printf("\nIdade inválida! Deve ser um número não negativo.\n");
-            fecha_procedimento=1;
-        }
-        if(id <0){
-            printf("\nID inválido! Deve ser um número não negativo.\n");
-            fecha_procedimento=1;
-        }
-        if(id > 9999){
-            printf("\nID inválido! Deve ser um número menor que 10000.\n");
-            fecha_procedimento=1;
-        }
-        /*verificação se tem ID igual ja adicionado, caso ja cadastrado, le de novo até nao ter outro cadastrado*/
-        q = *lista_usuarios;
-        while(q != NULL) {
-            if(q->id == id) {
-                printf("O ID %d ja esta cadastrado!", id);
-                fecha_procedimento=1;
-                q=NULL; /*sai do while*/
-            }
-            else {
-                q = q->prox;   
-            }
-        }
-        /*Se tudo estiver ok, adiciona o novo usuario na lista*/
-        if(fecha_procedimento!=1){
-            /*Abre malloc e verifica se não esta NULL*/
-            novo_usuario = (Usuario *)malloc(sizeof(Usuario));
-            if(novo_usuario == NULL) {
-                printf("Erro de alocação de memória!\n");
-            }
-            else {
-                /*Adiciona Na lista em ordem crescente alfabetica*/
-                strcpy(novo_usuario->nome, nome);
-                novo_usuario->idade = idade;
-                strcpy(novo_usuario->cidade, cidade);
-                novo_usuario->id = id;
-                novo_usuario->amigos = NULL;
-                novo_usuario->prox = NULL;
-                novo_usuario->publicacoes = NULL;
+    
 
-                /*Verifica se não tem ninguem na lista ou que em ordem alfabetica é menor que o primeiro da lista*/
-                if(*lista_usuarios == NULL || strcmp(novo_usuario->nome, (*lista_usuarios)->nome) < 0) {
-                    novo_usuario->prox = *lista_usuarios;
-                    *lista_usuarios = novo_usuario;
-                } else {
-                    p = *lista_usuarios;
-                    /*while anda até encontra que o proximo seja maior em ordem alfabetica que o que quer adicionar*/
-                    while(p->prox != NULL && strcmp(p->prox->nome, novo_usuario->nome) < 0) {
-                        p = p->prox;
-                    }
-                    novo_usuario->prox = p->prox;
-                    p->prox = novo_usuario;
-                }
-                printf("Usuário %s adicionado com sucesso!\n", nome);
-            }
+    /*Leitura do arquivo para cada dado*/
+    fscanf(arq, "%d %49s %d %49s", &id, nome, &idade, cidade);
+    
+    /*verifica se leu tudo corretamente e se não tem mais nada na linha*/
+    ch = fgetc(arq);
+    if(ch != '\n' && ch != EOF) {
+        /* Limpa o restante da linha até o final */
+        printf("Aviso: Nome maior que o permitido de 50 caracteres ou formato inválido na entrada.\n");
+        while (ch != '\n' && ch != EOF) {
+            ch = fgetc(arq);
+        }
+        fecha_procedimento=1; /*indica que houve erro na leitura dos dados*/
+    }
+
+    /*Mostra os dados lidos*/
+    if(fecha_procedimento!=1)
+        printf("Nome: %s\nIdade: %d\nCidade: %s\nID: %d\n", nome, idade, cidade, id);
+    else
+        printf("\nFalha na leitura dos dados do usuario com o ID: %d.\n", id);
+    /*verificação de idade negativa*/
+    if(idade <0){
+        printf("\nIdade inválida! Deve ser um número não negativo.\n");
+        fecha_procedimento=1;
+    }
+    if(id <0){
+        printf("\nID inválido! Deve ser um número não negativo.\n");
+        fecha_procedimento=1;
+    }
+    if(id > 9999){
+        printf("\nID inválido! Deve ser um número menor que 10000.\n");
+        fecha_procedimento=1;
+    }
+    /*verificação se tem ID igual ja adicionado, caso ja cadastrado, le de novo até nao ter outro cadastrado*/
+    q = *lista_usuarios;
+    while(q != NULL) {
+        if(q->id == id) {
+            printf("O ID %d ja esta cadastrado!", id);
+            fecha_procedimento=1;
+            q=NULL; /*sai do while*/
+        }
+        else {
+            q = q->prox;   
         }
     }
+    if(fecha_procedimento!=1){
+        /*Abre malloc e verifica se não esta NULL*/
+        novo_usuario = (Usuario *)malloc(sizeof(Usuario));
+        if(novo_usuario == NULL) {
+            printf("Erro de alocação de memória!\n");
+        }
+        else {
+            /*Adiciona Na lista em ordem crescente alfabetica*/
+            strcpy(novo_usuario->nome, nome);
+            novo_usuario->idade = idade;
+            strcpy(novo_usuario->cidade, cidade);
+            novo_usuario->id = id;
+            novo_usuario->amigos = NULL;
+            novo_usuario->prox = NULL;
+            novo_usuario->publicacoes = NULL;
+
+            /*Verifica se não tem ninguem na lista ou que em ordem alfabetica é menor que o primeiro da lista*/
+            if(*lista_usuarios == NULL || strcmp(novo_usuario->nome, (*lista_usuarios)->nome) < 0) {
+                novo_usuario->prox = *lista_usuarios;
+                *lista_usuarios = novo_usuario;
+            } else {
+                p = *lista_usuarios;
+                /*while anda até encontra que o proximo seja maior em ordem alfabetica que o que quer adicionar*/
+                while(p->prox != NULL && strcmp(p->prox->nome, novo_usuario->nome) < 0) {
+                    p = p->prox;
+                }
+                novo_usuario->prox = p->prox;
+                p->prox = novo_usuario;
+            }
+            printf("Usuário %s adicionado com sucesso!\n", nome);
+        }
+    } 
+
 }
 void listar_usuarios(Usuario *lista_usuarios) {
     Usuario *p = lista_usuarios;
@@ -196,49 +205,64 @@ void remover_usuario(Usuario **lista_usuarios, int id, Publicacao **lista_public
 }
 void publicar(Usuario **lista_usuarios, FILE *arq, Publicacao **lista_publicacoes) {
     Usuario *p = *lista_usuarios;
+    int fecha_procedimento;
+    char c;
     char publicacao[200];
     int id;
     Publicacao *nova_pub, *temp_pub;
+
+    fecha_procedimento=0;
     /* lê id e a publicação (uma palavra) na mesma linha */
     printf("Digite o ID do usuário que fará a publicação: ");
     if (fscanf(arq, "%d ", &id) == 1) {
         printf("%d\n", id);
         fgets(publicacao, sizeof(publicacao), arq);
-        
+        /*caso há publicação maior que o permitido, limpa o restante da linha*/
+        c = publicacao[strlen(publicacao) - 1];
+        if (c != '\n') {
+            printf("\nErro: Publicação maior que o permitido de 200 caracteres.\n");
+            while (c != '\n' && c != EOF) {
+                c = fgetc(arq);
+            }
+            fecha_procedimento=1; /*indica que houve erro na leitura dos dados*/
+        }
+
         p= busca_usuario(*lista_usuarios, id);  
         if (p == NULL) {
             printf("Usuário com ID %d não encontrado.\n", id);
         }
         else{
-            temp_pub = (Publicacao *)malloc(sizeof(Publicacao));
-            if (temp_pub == NULL) {
-                printf("Erro de alocação de memória!\n");
-            }
-            strcpy(temp_pub->publicacao, publicacao);
-            temp_pub->id = id;
-            strcpy(temp_pub->nome, p->nome);
-            if (*lista_publicacoes==NULL) /*pilha para armazenar as publicações por ordem de tempo*/
-            {
-                temp_pub->prox = NULL;
-                *lista_publicacoes = temp_pub;
-            }
-            else{
-                temp_pub->prox = *lista_publicacoes;
-                *lista_publicacoes = temp_pub;
-            }
+            if(fecha_procedimento!=1){
+                temp_pub = (Publicacao *)malloc(sizeof(Publicacao));
+                if (temp_pub == NULL) {
+                    printf("Erro de alocação de memória!\n");
+                }
+                strcpy(temp_pub->publicacao, publicacao);
+                temp_pub->id = id;
+                strcpy(temp_pub->nome, p->nome);
+                if (*lista_publicacoes==NULL) /*pilha para armazenar as publicações por ordem de tempo*/
+                {
+                    temp_pub->prox = NULL;
+                    *lista_publicacoes = temp_pub;
+                }
+                else{
+                    temp_pub->prox = *lista_publicacoes;
+                    *lista_publicacoes = temp_pub;
+                }
 
-            /* armazena a última publicação no campo publicacoes (estrutura atual) */
-            nova_pub = (Publicacao *)malloc(sizeof(Publicacao));
-            if (nova_pub == NULL) {
-                printf("Erro de alocação de memória!\n");
+                /* armazena a última publicação no campo publicacoes (estrutura atual) */
+                nova_pub = (Publicacao *)malloc(sizeof(Publicacao));
+                if (nova_pub == NULL) {
+                    printf("Erro de alocação de memória!\n");
+                }
+                strcpy(nova_pub->publicacao, publicacao);
+                nova_pub->prox = NULL;
+                /* insere no início da lista de publicações como uma pilha, por ser em ordem de "tempo, o primeiro a ser mostrado sera a mais recente"*/
+                nova_pub->prox = p->publicacoes;
+                p->publicacoes = nova_pub;
+                printf("\n-----------------------------------------\nO/A usuário/a %s (ID: %d) publicou:\n\t%s-----------------------------------------", p->nome, p->id, publicacao);
+                printf("\n");
             }
-            strcpy(nova_pub->publicacao, publicacao);
-            nova_pub->prox = NULL;
-            /* insere no início da lista de publicações como uma pilha, por ser em ordem de "tempo, o primeiro a ser mostrado sera a mais recente"*/
-            nova_pub->prox = p->publicacoes;
-            p->publicacoes = nova_pub;
-            printf("\n-----------------------------------------\nO/A usuário/a %s publicou:\n\t%s-----------------------------------------", p->nome, publicacao);
-            printf("\n");
         }
     }
 }
@@ -369,6 +393,9 @@ void adicionar_amigo(Usuario *lista_usuarios, FILE *arq) {
         }
         
     }   
+    else {
+        printf("Erro ao ler os IDs dos usuários.\n");
+    }
 }
 
 void empilhar_nomes(char pilha_nomes[][100], const char *nome, int *topo, Amigo *amigo_p) {
