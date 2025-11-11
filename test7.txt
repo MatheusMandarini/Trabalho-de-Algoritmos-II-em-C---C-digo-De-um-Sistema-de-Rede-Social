@@ -1,0 +1,13 @@
+1 1 P 30 CidadeP
+1 2 Friend_2 20 C
+5 1 2
+1 3 Friend_3 20 C
+5 1 3
+1 4 Friend_4 20 C
+5 1 4
+1 203 Q 25 CidadeQ
+5 203 2
+5 203 3
+5 203 4
+7 1
+0

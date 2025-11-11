@@ -1,0 +1,25 @@
+1 1 Alice 25 CidadeA
+1 2 Bob 26 CidadeB
+1 3 Carol 27 CidadeC
+1 4 Diego 28 CidadeD
+1 5 Eva 29 CidadeE
+4 1 Olá, sou Alice.
+4 2 Bom dia de Bob.
+4 3 Carol aqui, compartilhando algo.
+4 4 Diego postando.
+4 5 Eva diz oi.
+5 1 2
+5 1 3
+5 2 3
+5 2 4
+5 3 5
+6 1
+6 2
+10 1
+3 1
+3 2
+3 3
+3 4
+3 5
+9
+0

@@ -1,0 +1,7 @@
+1 5 Alice 20 SP
+1 5 Bob 22 RJ
+1 -1 Malu 18 MG
+1 10000 Carla 21 AM
+1 10 Lucas -5 SP
+9
+0

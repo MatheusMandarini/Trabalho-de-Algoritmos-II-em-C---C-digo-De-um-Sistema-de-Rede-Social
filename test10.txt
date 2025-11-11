@@ -1,0 +1,157 @@
+1 100 Alice_Almeida 25 Sao_Paulo
+1 101 Bob_Silva 30 Rio_de_Janeiro
+1 102 Carol_Pereira 28 Belo_Horizonte
+1 103 Diego_Souza 22 Curitiba
+1 104 Eva_Martins 35 Porto_Alegre
+
+1 100 Duplicata 40 CidadeX
+1 -5 InvalidoIDNegativo 20 CidadeY
+1 20000 InvalidoIDGrande 20 CidadeZ
+1 105 Novo_Com_Nome_Longo_Excedendo_O_Limite_De_Cinquenta_Caracteres_1234567890 29 CidadeLonga
+1 106 Joao  -3 CidadeNegativa
+
+4 100 Olá pessoal, sou Alice e este é meu primeiro post.
+4 101 Bob aqui — testando posts.
+4 102 Carol: post curto.
+4 103 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+5 100 101
+5 100 102
+5 101 102
+5 102 103
+5 200 100
+5 100 101
+
+6 100
+6 101
+10 100
+
+7 100
+7 104
+
+2 104 Eva_N_Martins 36 Porto_Alegre
+2 9999 NaoExistente 40 CidadeX
+
+8 100 102
+8 100 105
+
+4 101 Bob segundo post.
+4 100 Alice segundo post.
+4 102 Carol segundo post.
+
+3 102
+3 100
+
+6 101
+10 101
+7 101
+9
+
+1 300 PessoaP 40 CidadeP
+1 301 PessoaQ 41 CidadeQ
+
+1 201 FFriend201 20 C1
+1 202 FFriend202 20 C2
+1 203 FFriend203 20 C3
+1 204 FFriend204 20 C4
+1 205 FFriend205 20 C5
+1 206 FFriend206 20 C6
+1 207 FFriend207 20 C7
+1 208 FFriend208 20 C8
+1 209 FFriend209 20 C9
+1 210 FFriend210 20 C10
+1 211 FFriend211 20 C11
+1 212 FFriend212 20 C12
+1 213 FFriend213 20 C13
+1 214 FFriend214 20 C14
+1 215 FFriend215 20 C15
+1 216 FFriend216 20 C16
+1 217 FFriend217 20 C17
+1 218 FFriend218 20 C18
+1 219 FFriend219 20 C19
+1 220 FFriend220 20 C20
+1 221 FFriend221 20 C21
+1 222 FFriend222 20 C22
+1 223 FFriend223 20 C23
+1 224 FFriend224 20 C24
+1 225 FFriend225 20 C25
+
+5 300 201
+5 301 201
+5 300 202
+5 301 202
+5 300 203
+5 301 203
+5 300 204
+5 301 204
+5 300 205
+5 301 205
+5 300 206
+5 301 206
+5 300 207
+5 301 207
+5 300 208
+5 301 208
+5 300 209
+5 301 209
+5 300 210
+5 301 210
+5 300 211
+5 301 211
+5 300 212
+5 301 212
+5 300 213
+5 301 213
+5 300 214
+5 301 214
+5 300 215
+5 301 215
+5 300 216
+5 301 216
+5 300 217
+5 301 217
+5 300 218
+5 301 218
+5 300 219
+5 301 219
+5 300 220
+5 301 220
+5 300 221
+5 301 221
+5 300 222
+5 301 222
+5 300 223
+5 301 223
+5 300 224
+5 301 224
+5 300 225
+5 301 225
+
+7 300
+
+3 201
+3 202
+3 203
+3 204
+3 205
+3 206
+3 207
+3 208
+3 209
+3 210
+3 211
+3 212
+3 213
+3 214
+3 215
+3 216
+3 217
+3 218
+3 219
+3 220
+3 221
+3 222
+3 223
+
+9
+0

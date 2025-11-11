@@ -1,8 +1,8 @@
 FEED GERAL
 ============================================
-Usuario: math (ID: 20)
+Usuario: Bob_Silva (ID: 101)
 Post:
-	a blu blu ble
+	Bob segundo post.
 Post:
-	so na onda
+	Bob aqui — testando posts.
 ____________________________________________

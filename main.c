@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     FILE *arq_input, *arq_feed, *arq_recomendacoes, *arq_relatorio;
     int opcao, id;
     char buffer[200];
-    if(argc > 2) {
+    if(argc > 2 || argc <= 1) {
         printf("Erro de comando\n");
         return 1;
     }

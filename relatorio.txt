@@ -2,6 +2,11 @@ RELATÓRIO DE USUÁRIOS
 ---------------------------------------------------------------------------------------
 | Nome                 | ID     | Idade   | Cidade          | N Amigos | N Publicações |
 ---------------------------------------------------------------------------------------
-| jojo                 | 21     | 23 anos | BH              | 1        | 0             |
-| math                 | 20     | 25 anos | Sao_Paulo       | 1        | 2             |
+| Bob_Silva            | 101    | 30 anos | Rio_de_Janeiro  | 0        | 2             |
+| Diego_Souza          | 103    | 22 anos | Curitiba        | 0        | 0             |
+| Eva_N_Martins        | 104    | 36 anos | Porto_Alegre    | 0        | 0             |
+| FFriend224           | 224    | 20 anos | C24             | 2        | 0             |
+| FFriend225           | 225    | 20 anos | C25             | 2        | 0             |
+| PessoaP              | 300    | 40 anos | CidadeP         | 2        | 0             |
+| PessoaQ              | 301    | 41 anos | CidadeQ         | 2        | 0             |
 ---------------------------------------------------------------------------------------
