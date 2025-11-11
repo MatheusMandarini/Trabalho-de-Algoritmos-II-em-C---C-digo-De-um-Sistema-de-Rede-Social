@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     do {
-        printf("=========================================\nMenu:\n");
+        printf("\n=========================================\nMenu:\n");
         printf("\t1. Adicionar usuário\n");
         printf("\t2. Atualiza Usuário\n");
         printf("\t3. Remover usuário\n");
