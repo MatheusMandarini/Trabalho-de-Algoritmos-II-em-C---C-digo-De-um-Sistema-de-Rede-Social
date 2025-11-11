@@ -65,8 +65,7 @@ void feed_usuario(Usuario *lista_usuarios, Publicacao *lista_publicacoes, FILE *
 
 void atualiza(Usuario **lista_usuarios, FILE *arq);
 
-<<<<<<< HEAD
 #endif
-=======
-#endif
->>>>>>> e0a228d1c93717d2084a409c34d71ca40a639c45
+
+
+
