@@ -41,8 +41,7 @@ void adicionar_usuario(Usuario **lista_usuarios, FILE *arq) {
     /*Mostra os dados lidos*/
     if(fecha_procedimento!=1)
         printf("Nome: %s\nIdade: %d\nCidade: %s\nID: %d\n", nome, idade, cidade, id);
-    else
-        printf("\nFalha na leitura dos dados do usuario com o ID: %d.\n", id);
+    
     
         /*verificação de idade negativa*/
     if(idade <0){
@@ -996,8 +995,10 @@ void feed_usuario(Usuario *lista_usuarios, Publicacao *lista_publicacoes, FILE *
 /*procedimento para atualizar usuario*/
 void atualiza(Usuario **lista_usuarios, FILE *arq) {
     int id, idade;
-    char nome[50], cidade[50];
+    char nome[50], cidade[50], c;
     Usuario *p;
+    int lixo;
+    lixo = 0;
     printf("Digite o ID do usuário a ser atualizado: ");
     fscanf(arq, "%d", &id);
     printf("%d\n", id);
@@ -1006,21 +1007,41 @@ void atualiza(Usuario **lista_usuarios, FILE *arq) {
         printf("Usuário com ID %d não encontrado.\n", id);
         fscanf(arq, "%*[^\n]"); /* Limpa a linha restante */
     } else {
-        printf("Digite o novo nome: ");
+        
         fscanf(arq, "%49s", nome);
-        printf("%s\n", nome);
-        printf("Digite a nova idade: ");
+      
         fscanf(arq, "%d", &idade);
-        printf("%d\n", idade);
-        printf("Digite a nova cidade: ");
+        
         fscanf(arq, "%49s", cidade);
-        printf("%s\n", cidade);
-        
-        strcpy(p->nome, nome);
-        p->idade = idade;
-        strcpy(p->cidade, cidade);
-        
-        printf("Usuário atualizado com sucesso.\n");
+       
+        /*validação da idade*/
+        if(idade < 0) {
+            printf("Idade inválida. A idade não pode ser negativa.\n");
+        }
+        else{
+            /*caso o nome ou cidade sejam maiores que o permitido, limpa o restante da linha*/
+            c= fgetc(arq); /*lê o próximo caractere após a última leitura*/
+            
+            while (c != '\n' && c != EOF) {
+                c = fgetc(arq);
+                lixo = 1; /*indica que houve excesso de caracteres*/
+            }
+            
+            if(lixo == 1) {
+                printf("Aviso: Nome ou Nome da cidade maior que o permitido de 49 caracteres.\n");
+            }
+            else
+            {
+                printf("Atualizando usuário ID %d...\n", id);
+                printf("Nome antigo: %s, Idade antiga: %d, Cidade antiga: %s\n", p->nome, p->idade, p->cidade);
+                printf("Novo nome: %s, Nova idade: %d, Nova cidade: %s\n", nome, idade, cidade);
+                strcpy(p->nome, nome);
+                p->idade = idade;
+                strcpy(p->cidade, cidade);
+                
+                printf("Usuário atualizado com sucesso.\n");
+            }
+        }
     }
 
 }
