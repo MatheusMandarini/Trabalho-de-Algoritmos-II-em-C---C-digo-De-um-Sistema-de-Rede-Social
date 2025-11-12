@@ -68,4 +68,3 @@ void atualiza(Usuario **lista_usuarios, FILE *arq);
 #endif
 
 
-
