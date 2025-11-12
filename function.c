@@ -302,9 +302,13 @@ void publicar(Usuario **lista_usuarios, FILE *arq, Publicacao **lista_publicacoe
                 strcpy(nova_pub->publicacao, publicacao);
                 
                 /* insere no início da lista de publicações como uma pilha, por ser em ordem de "tempo, o primeiro a ser mostrado sera a mais recente"*/
-                nova_pub->prox = NULL;
-                nova_pub->prox = p->publicacoes;
-                p->publicacoes = nova_pub;
+                if(p->publicacoes == NULL) {
+                    nova_pub->prox = NULL;
+                    p->publicacoes = nova_pub;
+                } else {
+                    nova_pub->prox = p->publicacoes;
+                    p->publicacoes = nova_pub;
+                }
                 printf("\n-----------------------------------------\nO/A usuário/a %s (ID: %d) publicou:\n\t%s-----------------------------------------", p->nome, p->id, publicacao);
                 printf("\n");
             }
@@ -1045,3 +1049,46 @@ void atualiza(Usuario **lista_usuarios, FILE *arq) {
     }
 
 }
+/*Função para listar as publicações de um usuário*/
+void lista_publicacoes_usuario(Usuario *lista_usuarios, FILE *arq) {
+    Usuario *p = lista_usuarios;
+    Publicacao *s;
+    int id;
+    printf("Digite o ID da pessoa que gostaria de listar as publicações: ");
+    fscanf(arq, "%d", &id);
+    printf("%d\n", id);
+    if(p == NULL) {
+        printf("Nenhum usuário cadastrado.\n");
+    }
+    else{
+        
+        while(p!=NULL && p->id!=id)
+        {
+            p=p->prox;
+        }
+        if(p==NULL)
+        {
+            printf("ID inexistente\n");
+        }
+        else
+        {
+            s=p->publicacoes;
+            if(s==NULL){
+                printf("Usuário Não Possui Publicações\n");
+            }
+            else{
+                printf("Publicações de %s(ID: %d):\n", p->nome, p->id);
+                
+                while (s!=NULL)
+                {
+                    printf("\t%s\n", s->publicacao);
+                    s=s->prox;
+                }
+            
+            }
+        
+        }
+   
+    }
+}
+   
