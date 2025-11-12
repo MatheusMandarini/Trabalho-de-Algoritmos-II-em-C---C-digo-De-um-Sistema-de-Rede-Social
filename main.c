@@ -67,6 +67,7 @@ int main(int argc, char *argv[])
         printf("\t8. Remove Amizade\n");
         printf("\t9. Listar usuários\n");
         printf("\t10. Ver Feed do Usuário\n");
+        printf("\t11. Ver Publicações do Usuário\n");
         printf("\t0. Sair\n");
         printf("Escolha uma opção: ");
         fscanf(arq_input, "%d", &opcao);
@@ -105,6 +106,9 @@ int main(int argc, char *argv[])
             case 10:
                 feed_usuario(lista_usuarios, lista_publicacoes, arq_input);    
                 break; 
+            case 11:
+                lista_publicacoes_usuario(lista_usuarios, arq_input);
+                break;
             case 0:
                 printf("Saindo do programa...\n");
                 break;
@@ -127,3 +131,4 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
