@@ -65,6 +65,9 @@ void feed_usuario(Usuario *lista_usuarios, Publicacao *lista_publicacoes, FILE *
 
 void atualiza(Usuario **lista_usuarios, FILE *arq);
 
+void lista_publicacoes_usuario(Usuario *lista_usuarios, FILE *arq);
+
 #endif
+
 
 
